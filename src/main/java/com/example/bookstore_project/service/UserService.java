@@ -45,6 +45,7 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> getUserByemail(String email) {
+
          return repository.findUserByemail(email);
     }
 

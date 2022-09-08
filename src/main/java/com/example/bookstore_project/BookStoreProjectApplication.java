@@ -11,6 +11,6 @@ public class BookStoreProjectApplication {
     public static void main(String[] args) {
         SpringApplication.run(BookStoreProjectApplication.class, args);
           System.out.println("Hello!!");
-        log.info("Application Loaded Successfully.");
+        log.info("Welcome to program");
 }
 }
