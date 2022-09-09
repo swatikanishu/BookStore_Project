@@ -31,4 +31,7 @@ public class ResponseDto {
         this.message = s;
         this.object = details;
     }
-}
+
+
+    }
+

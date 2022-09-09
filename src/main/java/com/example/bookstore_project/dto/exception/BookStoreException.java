@@ -1,4 +1,4 @@
-package com.example.bookstore_project.exception;
+package com.example.bookstore_project.dto.exception;
 
 import com.example.bookstore_project.dto.ResponseDto;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 @Slf4j
 public class BookStoreException {
+
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResponseDto> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception){
         List<ObjectError> errorList = exception.getBindingResult().getAllErrors();
