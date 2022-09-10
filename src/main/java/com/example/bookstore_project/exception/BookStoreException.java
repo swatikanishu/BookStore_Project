@@ -1,4 +1,4 @@
-package com.example.bookstore_project.dto.exception;
+package com.example.bookstore_project.exception;
 
 import com.example.bookstore_project.dto.ResponseDto;
 import lombok.extern.slf4j.Slf4j;

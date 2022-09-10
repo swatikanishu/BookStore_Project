@@ -2,7 +2,7 @@ package com.example.bookstore_project.service;
 
 import com.example.bookstore_project.dto.LoginDto;
 import com.example.bookstore_project.dto.UserDto;
-import com.example.bookstore_project.dto.exception.UserException;
+import com.example.bookstore_project.exception.UserException;
 import com.example.bookstore_project.model.User;
 import com.example.bookstore_project.repo.UserRepo;
 import com.example.bookstore_project.utility.EmailSenderService;

@@ -1,4 +1,4 @@
-package com.example.bookstore_project.dto.exception;
+package com.example.bookstore_project.exception;
 
 
     public class UserException extends RuntimeException {
