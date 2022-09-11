@@ -28,7 +28,17 @@ public class BookStoreException {
     }
     @ExceptionHandler(UserException.class)
     public ResponseEntity<ResponseDto> handleAddressBookException(UserException exception){
-        ResponseDto resDTO = new ResponseDto("Exception while processing REST request", exception.getMessage());
+        ResponseDto resDTO = new ResponseDto("Exception while processing User REST request", exception.getMessage());
+        return new ResponseEntity(resDTO, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(CartException.class)
+    public ResponseEntity<ResponseDto> handleAddressBookException(CartException exception){
+        ResponseDto resDTO = new ResponseDto("Exception while processing Cart REST request", exception.getMessage());
+        return new ResponseEntity(resDTO, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(BookException.class)
+    public ResponseEntity<ResponseDto> handleAddressBookException(BookException exception){
+        ResponseDto resDTO = new ResponseDto("Exception while processing  Book REST request", exception.getMessage());
         return new ResponseEntity(resDTO, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(HttpMessageNotReadableException.class)

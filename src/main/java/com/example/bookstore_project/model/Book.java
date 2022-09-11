@@ -9,12 +9,13 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
+
 @Table(name="Book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "bookId", nullable = false)
+    private Long bookId;
 
     @Column(name="book_name")
     public String bookName;
