@@ -85,7 +85,6 @@ public class UserService implements IUserService {
     public User loginUser(LoginDto loginDTO) {
         Optional<User> userDetails = Optional.ofNullable(repository.findByEmail(loginDTO.getEmail_address()));
         if (userDetails.isPresent()) {
-            //String pass = login.get().getPassword();
             if(userDetails.get().getPassword().equals(loginDTO.getPassword())) {
                 emailSenderService.sendEmail(userDetails.get().getEmail_address(), "Login", "Login Successful!");
                 return userDetails.get();

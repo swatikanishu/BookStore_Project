@@ -42,7 +42,7 @@ public class OrderService implements  IOrderService{
             return  token;
 
         }else
-            throw new CartException(" userid and bookid is invalid");
+            throw new OrderException(" userid and bookid is invalid");
 
     }
 
@@ -63,17 +63,17 @@ public class OrderService implements  IOrderService{
     }
 
     @Override
-    public String deleteById(Long id) {
-        Order findById = orderRepo.findById(id).orElse(null);
-        if (findById != null) {
-            orderRepo.deleteById(id);
-            return "data is deleted";
+   public String deleteById(Long id) {
+       Order findById = orderRepo.findById(id).orElse(null);
+       if (findById != null) {
+           orderRepo.deleteById(id);
+           return "data is deleted";
 
         } else throw new OrderException("Order id is  invalid");
 
     }
 
-    @Override
+   @Override
     public String updateOrderData(Long id, OrderDto orderDto) {
         Optional<Book> book =bookRepo.findById(orderDto.getBookId());
         Optional<User> user =userRepo.findById(orderDto.getUserid());
@@ -89,7 +89,7 @@ public class OrderService implements  IOrderService{
             String token = tokenUtil.createToken(editorder.getOrderID());
             emailSenderService.sendEmail(user.get().getEmail_address(), "Edit Your Details",  token);
             return token;
-        } else throw new CartException("Id and order is not present ");
+        } else throw new OrderException("Id and order is not present ");
 
     }
 

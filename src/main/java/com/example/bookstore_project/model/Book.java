@@ -12,6 +12,9 @@ import javax.persistence.*;
 
 @Table(name="Book")
 public class Book {
+    /**
+     * variables
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "bookId", nullable = false)
@@ -27,7 +30,7 @@ public class Book {
     public String Bookimage;
     public String bookDescription;
 
-
+   // parameterized constructor
     public Book(BookDto bookDto) {
         this.bookName = bookDto.getBookName();
         this.authorName = bookDto.getAuthorName();

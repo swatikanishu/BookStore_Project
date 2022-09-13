@@ -23,7 +23,7 @@ public class Cart {
    @JoinColumn(name = "bookId")
    Book book;
     int quantity;
-
+// parameterized constructor
     public Cart(User user, Book book, int quantity) {
         this.user=user;
         this.book=book;

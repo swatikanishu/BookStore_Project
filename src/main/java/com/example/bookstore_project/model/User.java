@@ -24,7 +24,7 @@ import java.time.LocalDate;
     String email_address;
     LocalDate DOB;
     String password;
-
+   // parameterized constructor
     public User(UserDto userdto) {
         this.firstName = userdto.getFirstName();
         this.lastName = userdto.getLastName();

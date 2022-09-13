@@ -6,15 +6,19 @@ import com.example.bookstore_project.model.Cart;
 import java.util.List;
 
 public interface ICartService {
-    Cart addCart(CartDto cartDto);
+    String addCart(CartDto cartDto);
 
     List<Cart> findAll();
 
-    Cart FindById(Long id);
+    Cart FindById(Long cartid);
 
-    String deleteById(Long id);
+    String deleteById(Long cartid);
 
-    Cart updateCartData(Long id, CartDto cartDto);
+    Cart updateCartData(Long cartid, CartDto cartDto);
 
-    Cart changeCartQty(Long id, int quantity);
+    Cart changeCartQty(Long cartid, int quantity);
+
+    List<Cart> getCartDetailsByUserId(Long userid);
+
+    List<Cart> getCartDetailsByToken(String token);
 }

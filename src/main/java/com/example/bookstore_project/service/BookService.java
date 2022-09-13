@@ -18,18 +18,18 @@ public class BookService implements IBookService {
     BookRepo bookRepo;
     @Autowired
     EmailSenderService emailSenderService;
-
+   // create a method name as add book
     public Book addBook(BookDto bookDTO) {
         Book addData = new Book(bookDTO);
         return bookRepo.save(addData);
     }
-
+  //  create a method name as findall()
     @Override
     public List<Book> findAll() {
         List<Book> bookList = bookRepo.findAll();
         return bookList;
     }
-
+   // create a method name as findbyId
     @Override
     public Book FindById(Long id) {
         Book book = bookRepo.findById(id).orElse(null);
@@ -39,7 +39,7 @@ public class BookService implements IBookService {
         }else
             throw new BookException("book id is not found");
     }
-
+    //create a method name as gdeleteByid
     @Override
     public String deleteById(Long id) {
         Book findById = bookRepo.findById(id).orElse(null);
@@ -51,6 +51,7 @@ public class BookService implements IBookService {
         } else throw new BookException("id is not invalid");
 
     }
+  //  create a method name as findbookByname
 
     @Override
     public Book findBookByName(String bookName) {
@@ -62,7 +63,7 @@ public class BookService implements IBookService {
         }else   throw new BookException(" Book with naame  is  found!");
 
     }
-
+   // create a method name as updateBookData
     @Override
     public Book updateBookData(Long id, BookDto bookdto) {
         Book editbook = bookRepo.findById(id).orElse(null);

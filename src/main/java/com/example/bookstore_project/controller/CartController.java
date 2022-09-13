@@ -20,41 +20,61 @@ public class CartController {
     @Autowired
     ICartService cartService;
 
-
+     //add cart details
     @PostMapping("/add")
     public ResponseEntity<ResponseDto> addBook(@Valid @RequestBody CartDto cartDto) {
-        Cart cart = cartService.addCart(cartDto);
+        String cart = cartService.addCart(cartDto);
         ResponseDto responseDTO = new ResponseDto("cart details added", cart);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+   // get all cart data by findAll() method
     @GetMapping("/getAll")
     public ResponseEntity<ResponseDto> findAllDetail() {
         List<Cart> cartList = cartService.findAll();
         ResponseDto responseDTO = new ResponseDto("** All cart List ** ", cartList);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-    @GetMapping("/get/{Id}")
-    public ResponseEntity<ResponseDto> FindById(@PathVariable Long Id) {
-        Cart response = cartService.FindById(Id);
+    // get cartdetails with cartid
+    @GetMapping("/get/{cartId}")
+    public ResponseEntity<ResponseDto> FindById(@PathVariable Long cartId) {
+        Cart response = cartService.FindById(cartId);
         ResponseDto responseDto = new ResponseDto("***All Details cart list using Id***", response);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
-    @DeleteMapping("/delete/{Id}")
-    public ResponseEntity<ResponseDto> deleteById(@PathVariable Long Id) {
-        cartService.deleteById(Id);
-        ResponseDto reponseDTO = new ResponseDto("**cart Data deleted successfully ** ", "deleted id " + Id);
+   // Ability to delete cart details by id
+    @DeleteMapping("/delete/{cartId}")
+    public ResponseEntity<ResponseDto> deleteById(@PathVariable Long cartId) {
+        cartService.deleteById(cartId);
+        ResponseDto reponseDTO = new ResponseDto("**cart Data deleted successfully ** ", "deleted id " + cartId);
         return new ResponseEntity(reponseDTO, HttpStatus.ACCEPTED);
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<ResponseDto> editData(@PathVariable Long id, @Valid @RequestBody CartDto cartDto) {
-        Cart cartData = cartService.updateCartData(id, cartDto);
+   // Ability to update  cart details by id
+    @PutMapping("/update/{cartid}")
+    public ResponseEntity<ResponseDto> editData(@PathVariable Long cartid, @Valid @RequestBody CartDto cartDto) {
+        Cart cartData = cartService.updateCartData(cartid, cartDto);
         ResponseDto responseDTO = new ResponseDto("Updated Cart Details Successfully", cartData);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+    //Ability to update  quantity
     @PostMapping("/update-qty")
-    public ResponseEntity<ResponseDto> changeBookQuantity(@RequestParam Long id, @RequestParam int quantity) {
-        Cart cart = cartService.changeCartQty(id, quantity);
+    public ResponseEntity<ResponseDto> changeBookQuantity(@RequestParam Long cartid, @RequestParam int quantity) {
+        Cart cart = cartService.changeCartQty(cartid, quantity);
         ResponseDto responseDTO = new ResponseDto("Cart quantity changed successfully", cart);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+    //Get Cart Data by UserId
+    @GetMapping("/UserCart/{userId}")
+    public ResponseEntity<ResponseDto> getCartDataByUserID(@PathVariable Long Id){
+        List<Cart> userCartDetails = cartService.getCartDetailsByUserId(Id);
+        ResponseDto responseDTO = new ResponseDto("Cart Details with User ID: "+Id, userCartDetails);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+   // Ability to get cart details by token
+    @GetMapping("/UserCartToken/{token}")
+    public ResponseEntity<ResponseDto> getCartDataByToken(@PathVariable String token){
+        List<Cart> userCartDetails = cartService.getCartDetailsByToken(token);
+        ResponseDto responseDTO = new ResponseDto("Cart Details with User ID: "+token, userCartDetails);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
 }

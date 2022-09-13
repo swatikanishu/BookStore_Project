@@ -19,7 +19,7 @@ public class Order {
     int price;
     int quantity;
     String address;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="userid")
     User user;
     @ManyToOne

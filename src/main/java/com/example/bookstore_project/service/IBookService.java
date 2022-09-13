@@ -11,9 +11,9 @@ public interface IBookService {
 
     List<Book> findAll();
 
-    Book FindById(Long id);
+    Book FindById(Long bookid);
 
-    String deleteById(Long id);
+    String deleteById(Long bookid);
 
     Book findBookByName(String bookName);
 
@@ -23,5 +23,5 @@ public interface IBookService {
 
     List<Book> sortPriceHighToLow();
 
-    Book changeBookQty(Long id, int bookQuantity);
+    Book changeBookQty(Long bookid, int bookQuantity);
 }

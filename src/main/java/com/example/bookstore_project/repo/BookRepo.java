@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface BookRepo extends JpaRepository<Book, Long> {
+
     @Query(value = "SELECT * FROM book WHERE book_name=:bookName", nativeQuery = true)
 
     Book findBookByName(String bookName);
