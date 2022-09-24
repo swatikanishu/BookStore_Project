@@ -47,7 +47,7 @@ public class UserService implements IUserService {
 
     @Override
     public User getUserByemail(String email) {
-    User user=repository.findByEmail(email);
+        User user = repository.findByEmail(email);
         return user;
     }
 
@@ -75,9 +75,9 @@ public class UserService implements IUserService {
     public User getDataByToken(String token) {
         Long Userid = tokenUtil.decodeToken(token);
         Optional<User> existingData = repository.findById(Userid);
-        if(existingData.isPresent()){
+        if (existingData.isPresent()) {
             return existingData.get();
-        }else
+        } else
             throw new UserException("Invalid Token");
     }
 
@@ -85,13 +85,13 @@ public class UserService implements IUserService {
     public User loginUser(LoginDto loginDTO) {
         Optional<User> userDetails = Optional.ofNullable(repository.findByEmail(loginDTO.getEmail_address()));
         if (userDetails.isPresent()) {
-            if(userDetails.get().getPassword().equals(loginDTO.getPassword())) {
+            if (userDetails.get().getPassword().equals(loginDTO.getPassword())) {
                 emailSenderService.sendEmail(userDetails.get().getEmail_address(), "Login", "Login Successful!");
                 return userDetails.get();
             } else
                 emailSenderService.sendEmail(userDetails.get().getEmail_address(), "Login", "You have entered Invalid password!");
             throw new UserException("Wrong Password!!!");
-        }else
+        } else
             throw new UserException("Login Failed, Entered wrong email or password!!!");
     }
 
@@ -111,14 +111,41 @@ public class UserService implements IUserService {
     public String resetPassword(LoginDto loginDTO) {
         Optional<User> userDetails = Optional.ofNullable(repository.findByEmail(loginDTO.getEmail_address()));
         String password = loginDTO.getPassword();
-        if(userDetails.isPresent()){
+        if (userDetails.isPresent()) {
             userDetails.get().setPassword(password);
             repository.save(userDetails.get());
             return "Password Changed";
-        }else
+        } else
             return "Password is not valid";
     }
+
+    @Override
+    public String deleteByid(Long Id, String token) {
+        Optional<User> user = repository.findById(Id);
+        Long userid = tokenUtil.decodeToken(token);
+        Optional<User> userToken = repository.findById(userid);
+        if (user.get().getFirstName().equals(userToken.get().getFirstName())) {
+            repository.deleteById(Id);
+            return user.get() + "User is deleted for this ID";
+        } else
+            throw new UserException("Data is not match");
+
+    }
+
+    @Override
+    public User verifyUser(String token) {
+        Long userid = tokenUtil.decodeToken(token);
+        Optional<User> user = repository.findById(userid);
+        if (user.isPresent()) {
+            return user.get();
+
+        } else
+            throw new UserException("token is not valid");
+
+    }
+
 }
+
 
 
 

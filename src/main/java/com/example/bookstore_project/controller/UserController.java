@@ -81,4 +81,18 @@ public class UserController {
         ResponseDto responseDTO = new ResponseDto("Password Status:", response);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+    // delete data
+    @DeleteMapping("/delete/{id}/{token}")
+    public ResponseEntity<ResponseDto> retriveData(@PathVariable Long id ,@PathVariable String token ){
+        String user =userService.deleteByid(id,token);
+        ResponseDto response =new ResponseDto("Delete data by token",user);
+        return new  ResponseEntity(response,HttpStatus.ACCEPTED);
+    }
+    // verify user by token
+    @GetMapping("/verify/{token}")
+    public ResponseEntity<ResponseDto> verifyUser(@PathVariable String token) {
+        User user =userService.verifyUser(token);
+        ResponseDto responseDTO = new ResponseDto("User verified successfully", user);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
 }

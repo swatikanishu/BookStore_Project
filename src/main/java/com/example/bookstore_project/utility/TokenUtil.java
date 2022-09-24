@@ -1,5 +1,4 @@
 package com.example.bookstore_project.utility;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TokenUtil {
-    private static final String TOKEN_SECRET = "AddressBook";
+    private static final String TOKEN_SECRET = "BookStore";
 
     public String createToken(Long Id)   {
         try {

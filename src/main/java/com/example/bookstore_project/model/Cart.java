@@ -18,7 +18,6 @@ public class Cart {
     @OneToOne
     @JoinColumn(name = "userid")
    User user;
-
    @ManyToOne
    @JoinColumn(name = "bookId")
    Book book;

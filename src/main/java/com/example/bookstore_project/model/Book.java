@@ -21,14 +21,12 @@ public class Book {
     private Long bookId;
 
     @Column(name="book_name")
-    public String bookName;
-    public String authorName;
-    public int bookQuantity;
-    public int price;
-
-
-    public String Bookimage;
-    public String bookDescription;
+    private String bookName;
+    private String authorName;
+    private int bookQuantity;
+    private int price;
+    private String Bookimage;
+    private String bookDescription;
 
    // parameterized constructor
     public Book(BookDto bookDto) {
@@ -39,7 +37,5 @@ public class Book {
         this.Bookimage=bookDto.getBookimage();
         this.bookDescription =bookDto.getBookDescription();
     }
-
-
 
 }
